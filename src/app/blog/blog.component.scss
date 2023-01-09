@@ -1,0 +1,226 @@
+@import "../shared/style/variables";
+@import "../shared/style/mixins";
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.header {
+  @include block(100%, 70px);
+  background: linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(255,0,0,1) 100%);
+  display: inline-flex;
+  justify-content: space-between;
+  transition: all .4s;
+  &__logo {
+    @include block(380px, 70px);
+    font-size: 15px;
+    font-weight: 100;
+    padding: 20px;
+    color: $whiteCol;
+
+  }
+  &__btn {
+    @include block(400px, 70px);
+    padding: 15px;
+    display: flex;
+    justify-content: flex-end;
+    &__singIn {
+      @extend %btnLeft;
+      @include color($greenCol, $blackCol, $greenCol);
+      &:hover {
+        @include color($blackCol, $greenCol, $greenCol);
+      }
+      &:focus {
+        @extend %BtnChange;
+        background-color: rgb(0, 175, 0);
+        box-shadow: 0 0 5px 0 $greenCol;
+        color: white
+      }
+    }
+    &__singUp {
+      @extend %btnRight;
+      @include color($blueCol, $blackCol, $blueCol);
+      &:hover {
+        @include color($blackCol, $blueCol, $blueCol);
+      }
+      &:focus {
+        @extend %BtnChange;
+        box-shadow: 0 0 5px 0 $blueCol;
+        background-color: rgb(23, 158, 199);
+        color: white;
+      }
+    }
+    &__post {
+      @extend %btnLeft;
+      @include color($greenCol, $blackCol, $greenCol);
+      &:hover {
+        @include color($blackCol, $greenCol, $greenCol);
+      }
+      &:focus {
+        @extend %BtnChange;
+        box-shadow: 0 0 5px 0 $greenCol;
+      }
+    }
+    &__singOut {
+      @extend %btnRight;
+      @include color($orangeCol, $blackCol, $orangeCol);
+      &:hover {
+        @include color($blackCol, $orangeCol, $orangeCol);
+      }
+      &:focus {
+        @extend %BtnChange;
+        box-shadow: 0 0 5px 0 $orangeCol;
+      }
+    }
+    &__user {
+      @include block(80px, 40px);
+      text-align: center;
+      line-height: 50px;
+      background-color: $orangeCol;
+      font-size: 15px;
+      font-weight: 600;
+    }
+  }
+  &:hover {
+    background: linear-gradient(90deg, rgba(255,0,0,1) 0%, rgba(0,0,0,1) 100%);
+    transition: all 1s;
+  }
+  &:hover .header__logo {
+    color: black;
+    transition: all .4s;
+  }
+}
+.main {
+  @include block(100%, 500px);
+  margin: 50px auto;
+}
+.blog {
+  @include block(98%, 200px);
+  @include color($blackCol, none, $greyCol);
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px !important;
+  margin: 0 auto;
+  padding: 30px;
+  border-radius: 5px;
+  &__post {
+    @include block(80%, 200px);
+    line-height: 40px;
+    &__name {
+      font-size: 25px;
+    }
+    &__author {
+      font-size: 20px;
+      font-weight: 600;
+      color: $darkGrey;
+    }
+    &__content {
+      font-size: 18px;
+      color: $blackCol;
+    }
+  }
+  &__actions {
+    @include block(20%, 200px);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: flex-end;
+    font-size: 17px;
+    &__time {
+      color: $darkGrey;
+    }
+    &__btn__edit {
+      @extend %btnLeft;
+      @include color($blackCol, $orangeCol, $orangeCol);
+      padding: 10px 15px;
+      &:focus {
+        @extend %BtnChange;
+        box-shadow: 0 0 5px 0 $orangeCol;
+      }
+    }
+    &__btn__delete {
+      @extend %btnRight;
+      @include color($whiteCol, $redCol, $redCol);
+      padding: 10px 15px;
+      &:focus {
+        @extend %BtnChange;
+        box-shadow: 0 0 5px 0 $redCol;
+      }
+    }
+  }
+}
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: $blackShadow;
+  &__singUp,
+  &__AddPost,
+  &__singIn {
+    @extend %modalBlock;
+    border: none !important;
+    &__header {
+      @extend %headerModal;
+      &_close {
+        @extend %headerClose;
+      }
+    }
+    &__form {
+      @extend %modalForm;
+      &__name {
+        font-size: 20px;
+        font-weight: 600;
+      }
+      &__input {
+        @extend %modalInput;
+      }
+    }
+    &__btn {
+      @extend %modalBtnBlock;
+      &__close {
+        @extend %modalBtn;
+        @include color($bodyColor, $darkGrey, $darkGrey);
+        &:hover {
+          @extend %BtnChange;
+        }
+      }
+      &__sub {
+        @extend %modalBtn;
+        @include color($whiteCol, $blueCol, $blueCol);
+        &:hover {
+          @extend %BtnChange;
+        }
+      }
+    }
+  }
+  &__singIn {
+    min-height: 400px;
+
+    &__form {
+      min-height: 200px;
+    }
+  }
+  &__AddPost__form__textarea {
+    @extend %modalInput;
+    height: 100px;
+  }
+  &__singIn__btn__sub,
+  &__AddPost__btn__sub {
+    @include color($whiteCol, $greenCol, $greenCol);
+  }
+}
+
+@keyframes show {
+  from {
+    margin: -100px auto;
+    width: 500px;
+    border-radius: 25px;
+  }
+  to {
+    margin: 50px auto;
+  }
+}

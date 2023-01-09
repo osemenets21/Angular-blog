@@ -1,0 +1,11 @@
+@mixin color( $c, $bg,  $col) {
+    color: $c; 
+    background-color: $bg;
+    border: 2px solid $col;
+    
+}
+
+@mixin block($w, $h) {
+    width: $w;
+    min-height: $h;  
+}

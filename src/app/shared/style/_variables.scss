@@ -1,0 +1,107 @@
+@import "../style/mixins";
+$bodyColor: rgb(243, 239, 239);
+$whiteCol: rgb(255, 255, 255);
+$blackCol: rgb(92, 91, 91);
+$blackShadow: rgba(48, 48, 48, 0.753);
+$greyCol: rgb(187, 184, 184);
+$darkGrey: rgb(95, 94, 94);
+$greenCol: rgb(42, 219, 42);
+$blueCol: rgb(52, 140, 248);
+$lightBlue: rgb(145, 145, 231);
+$orangeCol: rgb(248, 172, 7);
+$redCol: rgb(250, 4, 4);
+
+%BtnChange {
+  cursor: pointer;
+  transform: scale(0.9);
+  transition: transform 0.5s;
+  
+}
+
+%btnLeft {
+  cursor: pointer;
+  border: 3px solid;
+  font-size: 17px;
+  font-weight: bold;
+  padding: 15px 20px;
+  border-radius: 5px 0 0 5px;
+}
+
+%btnRight {
+  cursor: pointer;
+  border: 3px solid;
+  font-size: 17px;
+  font-weight: bold;
+  padding: 15px 20px;
+  border-radius: 0 5px 5px 0;
+}
+
+%modalBlock {
+  margin: 50px auto;
+  @include block(600px, 500px);
+  @include color($blackCol, $whiteCol, $darkGrey);
+  border-radius: 5px;
+  box-shadow: 1px 1px 8px 1px $greyCol;
+  animation: show 0.2s ease 1;
+}
+
+%headerModal {
+  @include block(100%, 80px);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 25px;
+  border-bottom: 2px solid $greyCol;
+}
+
+%headerClose {
+  cursor: pointer;
+  @include block(30px, 30px);
+  font-weight: bolder;
+  text-align: center;
+  line-height: 30px;
+  &:hover {
+    transform: scale(1.2);
+    box-shadow: 10px 10px 10px 2px rgba(34, 60, 80, 0.2) inset,
+      10px 10px 10px 2px rgba(34, 60, 80, 0.2);
+    transition: box-shadow 0.5s, transform 0.5s;
+  }
+}
+%modalForm {
+  @include block(90%, 270px);
+  margin: 20px auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+%modalInput {
+  @include block(100%, 40px);
+  border-radius: 5px;
+  border: 1px solid $greyCol;
+  outline: none;
+  padding: 10px 20px;
+  font-size: 15px;
+  &:focus {
+    border: 1px solid $lightBlue;
+    box-shadow: 0 1px 8px 0 $lightBlue;
+  }
+}
+
+%modalBtnBlock {
+  @include block(100%, 40px);
+  border-top: 2px solid $greyCol;
+  margin-top: 10px;
+  display: flex;
+  justify-content: end;
+  padding: 5%;
+}
+
+%modalBtn {
+  cursor: pointer;
+  border: 3px solid;
+  font-size: 15px;
+  font-weight: bold;
+  padding: 10px 15px;
+  border-radius: 5px;
+  margin: 3px;
+}
